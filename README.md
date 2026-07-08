@@ -291,7 +291,11 @@ sudo mysql
 Créer la base
 
 ```sql
+<<<<<<< HEAD
+CREATE DATABASE ecommerce;
+=======
 CREATE DATABASE ecommerce CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+>>>>>>> 30446155378fd78bd91b44f8d7b244e271f5ba6a
 ```
 
 Créer un utilisateur
@@ -312,6 +316,10 @@ EXIT;
 
 ---
 
+<<<<<<< HEAD
+# Configuration d'Apache
+
+=======
 # Importer la base de données
 
 Importer le fichier SQL fourni avec le projet
@@ -324,6 +332,7 @@ mysql -u ecommerce -p ecommerce < database.sql
 
 # Configuration d'Apache
 
+>>>>>>> 30446155378fd78bd91b44f8d7b244e271f5ba6a
 Créer un VirtualHost
 
 ```bash
@@ -335,9 +344,15 @@ sudo nano /etc/apache2/sites-available/nm-ecommerce.conf
 
     ServerName localhost
 
+<<<<<<< HEAD
+    DocumentRoot /var/www/nm-ecommerce-plateform-v1/public
+
+    <Directory /var/www/nm-ecommerce-plateform-v1/public>
+=======
     DocumentRoot /var/www/nm-ecommerce-plateform-v1/Public
 
     <Directory /var/www/nm-ecommerce-plateform-v1/Public>
+>>>>>>> 30446155378fd78bd91b44f8d7b244e271f5ba6a
         AllowOverride All
         Require all granted
     </Directory>
@@ -386,6 +401,14 @@ sudo find /var/www/nm-ecommerce-plateform-v1 -type d -exec chmod 755 {} \;
 sudo find /var/www/nm-ecommerce-plateform-v1 -type f -exec chmod 644 {} \;
 ```
 
+<<<<<<< HEAD
+(selon votre configuration)
+
+---
+
+# Accéder au projet
+
+=======
 Si le projet utilise un dossier de stockage ou d'upload, lui donner les droits d'écriture :
 
 ```bash
@@ -404,6 +427,7 @@ sudo chmod -R 775 Public/uploads
 
 # Accéder au projet
 
+>>>>>>> 30446155378fd78bd91b44f8d7b244e271f5ba6a
 Depuis le navigateur :
 
 ```
@@ -440,4 +464,8 @@ Vous êtes libre de l'étudier, de l'adapter et de vous en inspirer conformémen
 
 ---
 
+<<<<<<< HEAD
 Développé par **Noureddine MAIZA**.
+=======
+Développé par **Noureddine MAIZA**.
+>>>>>>> 30446155378fd78bd91b44f8d7b244e271f5ba6a
