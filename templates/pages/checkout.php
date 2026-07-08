@@ -264,7 +264,7 @@ $totalAfterDiscount = $totalBeforeDiscount;
         </div>
     </div>
 </div>
-<div id="custom-toast" style="display:none; z-index: 2001;">
+<div id="custom-toast" class="custom-toast" style="display:none; z-index: 2001;">
     <p>Voulez-vous vraiment supprimer cet article ?</p>
     <button id="toast-confirm">Supprimer</button>
     <button id="toast-cancel">Annuler</button>
