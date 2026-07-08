@@ -374,3 +374,26 @@
             transform: translateY(0);
         }
     }
+    
+/* Conteneur du toast */
+.custom-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  color: #333;
+  padding: 15px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  display: none;
+  z-index: 1000;
+}
+
+/* Boutons */
+.custom-toast button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
