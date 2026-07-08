@@ -1,41 +1,43 @@
 # NM E-Commerce Platform v1
 
-> A complete e-commerce platform developed in PHP following an MVC-inspired architecture, featuring a dynamic administration dashboard for managing products, pages, categories, quotes, subscribers, and more.
+NM E-Commerce Platform v1 est une plateforme e-commerce développée en PHP orienté objet suivant une architecture MVC (non stricte). Elle permet à une entreprise de présenter ses produits et services en ligne tout en administrant entièrement son contenu via un tableau de bord.
+
+> ⚠️ Ce projet a été initialement développé en 2019 dans le cadre d'un projet personnel afin d'acquérir une première expérience complète dans le développement d'une plateforme e-commerce. Il est aujourd'hui publié à des fins de démonstration et de portfolio.
 
 > **Author:** Noureddine MAIZA  
 > **Repository:** https://github.com/nooreddinemaiza/nm-ecommerce-plateform-v1
 
 ---
 
-# Features
+# Fonctionnalités
 
-- Product catalog
-- Product search
-- Categories management
-- Quote request system
-- Contact form
-- Dynamic page management
-- Administration dashboard
-- Products management
-- Categories management
-- Moderators management
-- Subscribers management
-- Quotes management
-- SMTP email support (PHPMailer)
-- Password reset
-- SEO metadata management
-- Image upload
-- CAPTCHA generation
-- MVC-inspired architecture
-- Object-Oriented PHP
+- Catalogue de produits
+- Catégories de produits
+- Recherche
+- Demande de devis
+- Formulaire de contact
+- Tableau de bord d'administration
+- Gestion des produits
+- Gestion des catégories
+- Gestion des pages
+- Gestion des modérateurs
+- Gestion des abonnés
+- Gestion des devis
+- Upload d'images
+- Optimisation SEO
+- Envoi d'emails via SMTP
+- Réinitialisation de mot de passe
+- CAPTCHA
+- Gestion des métadonnées
+- Et bien plus...
 
 ---
 
 # Technologies
 
-- PHP 8.2+
+- PHP 8.2
+- MySQL / MariaDB
 - Apache2
-- MariaDB / MySQL
 - HTML5
 - CSS3
 - Bootstrap
@@ -46,18 +48,11 @@
 
 ---
 
-# System Requirements
+# Installation
 
-- Ubuntu 22.04 or newer
-- Apache2
-- PHP 8.2 or newer
-- MariaDB or MySQL
-- Composer
-- Git
+Les étapes suivantes ont été réalisées sous **Ubuntu**.
 
----
-
-# 1. Update Ubuntu
+## 1. Mettre le système à jour
 
 ```bash
 sudo apt update
@@ -66,20 +61,20 @@ sudo apt upgrade -y
 
 ---
 
-# 2. Install Apache
+## 2. Installer Apache
 
 ```bash
 sudo apt install apache2 -y
 ```
 
-Enable Apache
+Activer Apache
 
 ```bash
 sudo systemctl enable apache2
 sudo systemctl start apache2
 ```
 
-Verify
+Vérifier son état
 
 ```bash
 sudo systemctl status apache2
@@ -87,24 +82,31 @@ sudo systemctl status apache2
 
 ---
 
-# 3. Install PHP
+## 3. Installer PHP
 
 ```bash
-sudo apt install -y \
-php \
-php-cli \
-php-common \
+sudo apt install php php-cli php-common libapache2-mod-php -y
+```
+
+Installer les extensions nécessaires
+
+```bash
+sudo apt install \
 php-mysql \
 php-mbstring \
 php-xml \
 php-curl \
-php-gd \
 php-zip \
+php-gd \
 php-intl \
-php-bcmath
+php-bcmath \
+php-imagick \
+php-soap \
+php-opcache \
+-y
 ```
 
-Verify
+Vérifier
 
 ```bash
 php -v
@@ -112,48 +114,20 @@ php -v
 
 ---
 
-# 4. Install Composer
+## 4. Installer MariaDB
 
 ```bash
-sudo apt install composer -y
+sudo apt install mariadb-server mariadb-client -y
 ```
 
-Verify
-
-```bash
-composer --version
-```
-
----
-
-# 5. Install Git
-
-```bash
-sudo apt install git -y
-```
-
-Verify
-
-```bash
-git --version
-```
-
----
-
-# 6. Install MariaDB
-
-```bash
-sudo apt install mariadb-server -y
-```
-
-Enable MariaDB
+Activer MariaDB
 
 ```bash
 sudo systemctl enable mariadb
 sudo systemctl start mariadb
 ```
 
-Secure installation
+Sécuriser MariaDB
 
 ```bash
 sudo mysql_secure_installation
@@ -161,24 +135,175 @@ sudo mysql_secure_installation
 
 ---
 
-# 7. Create Database
+## 5. Installer Git
 
-Login
+```bash
+sudo apt install git -y
+```
+
+---
+
+## 6. Installer Composer
+
+```bash
+sudo apt install composer -y
+```
+
+Vérifier
+
+```bash
+composer --version
+```
+
+---
+
+# Cloner le projet
+
+Se placer dans le dossier web
+
+```bash
+cd /var/www
+```
+
+Cloner le dépôt
+
+```bash
+sudo git clone https://github.com/nooreddinemaiza/nm-ecommerce-plateform-v1.git
+```
+
+Entrer dans le projet
+
+```bash
+cd nm-ecommerce-plateform-v1
+```
+
+---
+
+# Installer les dépendances Composer
+
+```bash
+composer install
+```
+
+---
+
+# Configuration du fichier .env
+
+Le projet utilise un fichier **.env** pour stocker sa configuration.
+
+Copiez le fichier modèle :
+
+```bash
+cp env.copy .env
+```
+
+Ouvrez ensuite le fichier :
+
+```bash
+nano .env
+```
+
+Renseignez les valeurs correspondant à votre environnement.
+
+```ini
+# === BASE DE DONNÉES ===
+
+# Adresse du serveur MySQL
+DB_HOST=""
+
+# Nom de la base de données
+DB_NAME=""
+
+# Nom d'utilisateur
+DB_USER=""
+
+# Mot de passe de la base de données
+# Cette ligne sera effacée automatiquement pour votre sécurité
+DB_PASS=""
+
+
+
+# === MODE MAINTENANCE ===
+
+MAINTENANCE=false
+
+
+
+# === INFOS PUBLIQUES DU SITE ===
+
+WEB_NAME=""
+WEB_SLOGAN=""
+WEB_ADDRESS=""
+WEB_PHONE=""
+WEB_EMAIL=""
+
+
+
+# === PARAMÈTRES EMAIL ===
+
+# Mot de passe ou mot de passe d'application
+# Cette ligne sera effacée automatiquement pour votre sécurité
+WEB_EMAIL_PASSWORD=""
+
+WEB_EMAIL_HOST=""
+WEB_EMAIL_PORT=
+WEB_EMAIL_ENCRYPTION=""
+
+
+
+# === ADMIN PRINCIPAL ===
+
+WEB_ADMIN_USERNAME=""
+WEB_ADMIN_EMAIL=""
+
+
+
+# === CAPTCHA ===
+
+CAPTCHA_LENGTH=6
+CAPTCHA_MAX_ATTEMPTS=3
+
+
+
+# === COMMANDES ===
+
+ORDER_ID_NUMBER=13102025
+WEB_CANCEL_ORDER_LIMIT="1 Jour"
+
+
+
+# === DEVIS ===
+
+DEVIS_WITH_SUBSCRIBE=false
+DEVIS_SEND_COPY_TO_CLIENT=true
+```
+
+---
+
+# Créer la base de données
+
+Connexion à MariaDB
 
 ```bash
 sudo mysql
 ```
 
-Create database
+Créer la base
 
 ```sql
-CREATE DATABASE nm_ecommerce CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE ecommerce CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
 
-CREATE USER 'nm_user'@'localhost' IDENTIFIED BY 'StrongPassword';
+Créer un utilisateur
 
-GRANT ALL PRIVILEGES
-ON nm_ecommerce.*
-TO 'nm_user'@'localhost';
+```sql
+CREATE USER 'ecommerce'@'localhost' IDENTIFIED BY 'VotreMotDePasse';
+```
+
+Attribuer les droits
+
+```sql
+GRANT ALL PRIVILEGES ON ecommerce.* TO 'ecommerce'@'localhost';
 
 FLUSH PRIVILEGES;
 
@@ -187,51 +312,23 @@ EXIT;
 
 ---
 
-# 8. Clone the Project
+# Importer la base de données
 
-Move to the web directory
-
-```bash
-cd /var/www
-```
-
-Clone
+Importer le fichier SQL fourni avec le projet
 
 ```bash
-sudo git clone https://github.com/nooreddinemaiza/nm-ecommerce-plateform-v1.git
-```
-
-Go inside
-
-```bash
-cd nm-ecommerce-plateform-v1
+mysql -u ecommerce -p ecommerce < database.sql
 ```
 
 ---
 
-# 9. Install Composer Dependencies
+# Configuration d'Apache
 
-```bash
-composer install
-```
-
-or
-
-```bash
-composer update
-```
-
----
-
-# 10. Configure Apache
-
-Create a VirtualHost
+Créer un VirtualHost
 
 ```bash
 sudo nano /etc/apache2/sites-available/nm-ecommerce.conf
 ```
-
-Paste
 
 ```apache
 <VirtualHost *:80>
@@ -241,39 +338,29 @@ Paste
     DocumentRoot /var/www/nm-ecommerce-plateform-v1/Public
 
     <Directory /var/www/nm-ecommerce-plateform-v1/Public>
-
         AllowOverride All
-
         Require all granted
-
     </Directory>
 
-    ErrorLog ${APACHE_LOG_DIR}/nm_error.log
-
-    CustomLog ${APACHE_LOG_DIR}/nm_access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/nm-error.log
+    CustomLog ${APACHE_LOG_DIR}/nm-access.log combined
 
 </VirtualHost>
 ```
 
-Enable the site
+Activer le site
 
 ```bash
 sudo a2ensite nm-ecommerce.conf
 ```
 
-Disable the default site
-
-```bash
-sudo a2dissite 000-default.conf
-```
-
-Enable rewrite
+Activer mod_rewrite
 
 ```bash
 sudo a2enmod rewrite
 ```
 
-Restart Apache
+Redémarrer Apache
 
 ```bash
 sudo systemctl restart apache2
@@ -281,155 +368,76 @@ sudo systemctl restart apache2
 
 ---
 
-# 11. Configure the Environment File
+# Permissions Linux
 
-Copy
-
-```bash
-cp .env.example .env
-```
-
-Edit
-
-```bash
-nano .env
-```
-
-Configure your application according to your environment.
-
-Example
-
-```env
-APP_ENV=development
-
-APP_DEBUG=true
-
-DB_HOST=localhost
-
-DB_PORT=3306
-
-DB_NAME=nm_ecommerce
-
-DB_USERNAME=nm_user
-
-DB_PASSWORD=StrongPassword
-```
-
----
-
-# 12. Import the Database
-
-Import your SQL dump
-
-```bash
-mysql -u nm_user -p nm_ecommerce < database.sql
-```
-
----
-
-# 13. Linux Permissions
-
-Give ownership to Apache
+Attribuer le propriétaire du projet
 
 ```bash
 sudo chown -R www-data:www-data /var/www/nm-ecommerce-plateform-v1
 ```
 
-Permissions
+Donner les permissions recommandées
 
 ```bash
 sudo find /var/www/nm-ecommerce-plateform-v1 -type d -exec chmod 755 {} \;
+```
 
+```bash
 sudo find /var/www/nm-ecommerce-plateform-v1 -type f -exec chmod 644 {} \;
 ```
 
-Writable directories
+Si le projet utilise un dossier de stockage ou d'upload, lui donner les droits d'écriture :
 
 ```bash
 sudo chmod -R 775 Storage
-
-sudo chmod -R 775 Public/uploads
-
-sudo chown -R www-data:www-data Storage
-
-sudo chown -R www-data:www-data Public/uploads
 ```
 
----
-
-# 14. Restart Services
+ou
 
 ```bash
-sudo systemctl restart apache2
-
-sudo systemctl restart mariadb
+sudo chmod -R 775 Public/uploads
 ```
+
+(selon votre configuration)
 
 ---
 
-# 15. Access the Application
+# Accéder au projet
 
-Open your browser
+Depuis le navigateur :
 
 ```
 http://localhost
 ```
 
-or
+ou
 
 ```
-http://SERVER_IP
-```
-
----
-
-# Project Structure
-
-```
-App/
-Config/
-Core/
-Database/
-Public/
-Resources/
-Routes/
-Storage/
-Vendor/
-composer.json
-.env
+http://adresse-ip-du-serveur
 ```
 
 ---
 
-# Composer Packages
+# Dépendances Composer
 
+Le projet utilise notamment :
+
+- PHPMailer
+- vlucas/phpdotenv
 - graham-campbell/result-type
 - phpoption/phpoption
 - symfony/polyfill-ctype
 - symfony/polyfill-mbstring
 - symfony/polyfill-php80
-- vlucas/phpdotenv
-- phpmailer/phpmailer
 
 ---
 
-# Development Notes
+# Licence
 
-This project was originally developed in 2019 as a learning experience to understand how a complete e-commerce platform works. Although newer projects have significantly improved the architecture and stability, this repository reflects the foundation that led to the development of more advanced applications.
+Ce projet est publié à des fins de démonstration et de portfolio.
 
----
-
-# License
-
-This project is published for educational and portfolio purposes.
-
-Commercial use requires the author's permission.
+Vous êtes libre de l'étudier, de l'adapter et de vous en inspirer conformément à la licence du dépôt.
 
 ---
 
-# Author
-
-**Noureddine MAIZA**
-
-GitHub:
-https://github.com/nooreddinemaiza
+Développé par **Noureddine MAIZA**.
