@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /login
+Disallow: /logout
+Disallow: /dashboard
+Disallow: /search/*
+Allow: /contact
+Allow: /about
+Allow: /home
+Allow: /shop
+Allow: /devis
+Allow: /categories
+Allow: /actualites
+Crawl-delay: 1
+Host: localhost

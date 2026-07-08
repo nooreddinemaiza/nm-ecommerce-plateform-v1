@@ -1,0 +1,3 @@
+# Interdire l'accès à ce répertoire
+Order Deny,Allow
+Deny from all

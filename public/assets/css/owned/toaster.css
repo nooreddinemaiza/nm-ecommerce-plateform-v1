@@ -1,0 +1,134 @@
+    .custom-toast {
+        position: fixed;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        padding: 16px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-left: 4px solid #e74c3c;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .toast-icon {
+        font-size: 28px;
+        color: #e74c3c;
+        margin-bottom: 12px;
+    }
+
+    .toast-message {
+        margin: 0 0 16px 0;
+        text-align: center;
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 1rem;
+    }
+
+    .toast-actions {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .btn-toast {
+        flex: 1;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .btn-toast.confirm {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    .btn-toast.confirm:hover {
+        background-color: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+    }
+
+    .btn-toast.confirm:active {
+        transform: scale(0.95);
+    }
+
+    .btn-toast.cancel {
+        background-color: #ecf0f1;
+        color: #7f8c8d;
+    }
+
+    .btn-toast.cancel:hover {
+        background-color: #bdc3c7;
+        color: #2c3e50;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-toast.cancel:active {
+        transform: scale(0.95);
+    }
+
+    /* Animation de pulsation pour l'icône */
+    .pulse {
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Animation pour disparition */
+    .toast-hide {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+
+    /* Effet de confirmation */
+    .toast-confirming {
+        background: rgba(46, 204, 113, 0.95);
+        border-left-color: #27ae60;
+    }
+
+    .toast-confirming .toast-icon {
+        color: white;
+    }
+
+    .toast-confirming .toast-message {
+        color: white;
+    }
+
+    /* Effet d'annulation */
+    .toast-canceling {
+        background: rgba(52, 73, 94, 0.95);
+        border-left-color: #2c3e50;
+    }
+
+    .toast-canceling .toast-icon {
+        color: white;
+    }
+
+    .toast-canceling .toast-message {
+        color: white;
+    }

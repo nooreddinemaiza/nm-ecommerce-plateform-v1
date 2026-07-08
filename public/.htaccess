@@ -1,0 +1,10 @@
+# Activer la réécriture des URL
+RewriteEngine On
+
+# Si l'URL correspond à un fichier ou un dossier existant, ne pas réécrire
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rediriger toutes les requêtes restantes vers index.php
+RewriteRule ^ index.php [QSA,L]

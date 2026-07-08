@@ -1,0 +1,27 @@
+# Activer la réécriture des URL
+RewriteEngine On
+
+# Masquer l'en-tête Server
+Header unset Server
+
+# Masquer la version PHP
+php_value expose_php Off
+
+# Rediriger toutes les requêtes vers le dossier public (point d'entrée)
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]
+
+# Protéger les fichiers sensibles
+<FilesMatch "\.(htaccess|env|ini|log|conf|bak)$">
+    Require all denied
+</FilesMatch>
+
+# Cacher l'extension .php dans les URL
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9_-]+)$ /$1.php [L]
+
+# Rediriger les erreurs vers des pages personnalisées
+ErrorDocument 404 /public/
+ErrorDocument 403 /public/
+ErrorDocument 500 /public/

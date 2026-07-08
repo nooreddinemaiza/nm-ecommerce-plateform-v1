@@ -1,0 +1,11 @@
+# Empêcher l'accès à tout fichier de ce dossier
+<Files "*">
+    Require all denied
+</Files>
+# Interdire l'accès direct aux fichiers PHP dans le dossier src
+<FilesMatch "\.php$">
+    Deny from all
+</FilesMatch>
+
+# Désactiver l'indexation des fichiers
+Options -Indexes
